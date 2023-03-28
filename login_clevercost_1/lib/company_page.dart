@@ -1,5 +1,6 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:login_clevercost_1/dashboard.dart';
 
 class CompanyPage extends StatefulWidget {
   const CompanyPage({super.key});
@@ -9,9 +10,13 @@ class CompanyPage extends StatefulWidget {
 }
 
 class _CompanyPageState extends State<CompanyPage> {
+  var dashboardRoute = MaterialPageRoute(
+    builder: (BuildContext context) => Dashboard(),
+  );
+
   //Continue to Dashboard
   continueToDash() {
-    //Navigation to Dashboard
+    Navigator.push(context, dashboardRoute);
   }
 
   bool rememberCompany = false;
