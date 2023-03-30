@@ -2,6 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:login_clevercost_1/dashboard.dart';
 
+import 'diagrams/doughnut_diagram.dart';
+
 class CompanyPage extends StatefulWidget {
   const CompanyPage({super.key});
 
@@ -10,13 +12,14 @@ class CompanyPage extends StatefulWidget {
 }
 
 class _CompanyPageState extends State<CompanyPage> {
-  var dashboardRoute = MaterialPageRoute(
-    builder: (BuildContext context) => Dashboard(),
-  );
+  // var dashboardRoute = MaterialPageRoute(
+  //   builder: (BuildContext context) => DonutChartScreen,
+  // );
 
   //Continue to Dashboard
   continueToDash() {
-    Navigator.push(context, dashboardRoute);
+    Navigator.pushNamed(
+        context, DonutChartScreen.routeName); // Navigate to DonutChartScreen
   }
 
   bool rememberCompany = false;

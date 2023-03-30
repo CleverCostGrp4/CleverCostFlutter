@@ -1,5 +1,6 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:login_clevercost_1/diagrams/doughnut_diagram.dart';
 import 'login_page.dart';
 
 void main() {
@@ -11,7 +12,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        DonutChartScreen.routeName: (context) =>
+            const DonutChartScreen(title: 'random title'),
+      },
       home: LoginPage(),
     );
   }

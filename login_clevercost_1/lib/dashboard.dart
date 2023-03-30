@@ -41,25 +41,74 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: SfCircularChart(
-        title: ChartTitle(
-            text: 'Top Suppliers in millions',
-            alignment: ChartAlignment.center),
-        tooltipBehavior: _tooltipBehavior,
-        series: <CircularSeries>[
-          DoughnutSeries<SupplierData, String>(
-            dataSource: _chartData,
-            xValueMapper: (SupplierData data, _) => data.amountName,
-            yValueMapper: (SupplierData data, _) => data.amount,
-            dataLabelSettings: const DataLabelSettings(isVisible: true),
-            enableTooltip: true,
-          ),
-        ],
-        legend: Legend(
-            isVisible: true,
-            overflowMode: LegendItemOverflowMode.wrap,
-            position: LegendPosition.bottom,
-            offset: const Offset(0, -70)),
+      body: Container(
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            SfCircularChart(
+              title: ChartTitle(
+                  text: 'Top Suppliers in millions',
+                  alignment: ChartAlignment.center),
+              tooltipBehavior: _tooltipBehavior,
+              series: <CircularSeries>[
+                DoughnutSeries<SupplierData, String>(
+                  dataSource: _chartData,
+                  xValueMapper: (SupplierData data, _) => data.amountName,
+                  yValueMapper: (SupplierData data, _) => data.amount,
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
+                  enableTooltip: true,
+                ),
+              ],
+              legend: Legend(
+                  isVisible: true,
+                  overflowMode: LegendItemOverflowMode.wrap,
+                  position: LegendPosition.bottom,
+                  offset: const Offset(0, -70)),
+            ),
+            SizedBox(height: 20),
+            SfCircularChart(
+              title: ChartTitle(
+                  text: 'Top Suppliers in millions',
+                  alignment: ChartAlignment.center),
+              tooltipBehavior: _tooltipBehavior,
+              series: <CircularSeries>[
+                DoughnutSeries<SupplierData, String>(
+                  dataSource: _chartData,
+                  xValueMapper: (SupplierData data, _) => data.amountName,
+                  yValueMapper: (SupplierData data, _) => data.amount,
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
+                  enableTooltip: true,
+                ),
+              ],
+              legend: Legend(
+                  isVisible: true,
+                  overflowMode: LegendItemOverflowMode.wrap,
+                  position: LegendPosition.bottom,
+                  offset: const Offset(0, -70)),
+            ),
+            SizedBox(height: 20),
+            SfCircularChart(
+              title: ChartTitle(
+                  text: 'Top Suppliers in millions',
+                  alignment: ChartAlignment.center),
+              tooltipBehavior: _tooltipBehavior,
+              series: <CircularSeries>[
+                DoughnutSeries<SupplierData, String>(
+                  dataSource: _chartData,
+                  xValueMapper: (SupplierData data, _) => data.amountName,
+                  yValueMapper: (SupplierData data, _) => data.amount,
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
+                  enableTooltip: true,
+                ),
+              ],
+              legend: Legend(
+                  isVisible: true,
+                  overflowMode: LegendItemOverflowMode.wrap,
+                  position: LegendPosition.bottom,
+                  offset: const Offset(0, -70)),
+            ),
+          ],
+        ),
       ),
     ));
   }
