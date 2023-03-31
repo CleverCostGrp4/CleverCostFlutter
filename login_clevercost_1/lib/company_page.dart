@@ -1,6 +1,7 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
 import 'package:login_clevercost_1/dashboard.dart';
+import 'package:login_clevercost_1/diagrams/stackedLine_diagram.dart';
 
 import 'diagrams/doughnut_diagram.dart';
 
@@ -20,6 +21,11 @@ class _CompanyPageState extends State<CompanyPage> {
   continueToDash() {
     Navigator.pushNamed(
         context, DonutChartScreen.routeName); // Navigate to DonutChartScreen
+  }
+
+  continueToStacked() {
+    Navigator.pushNamed(
+        context, StackedLine.routeName); // Navigate to DonutChartScreen
   }
 
   bool rememberCompany = false;
@@ -111,6 +117,7 @@ class _CompanyPageState extends State<CompanyPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: GestureDetector(
+                  onLongPress: continueToStacked,
                   onTap: continueToDash,
                   child: Container(
                     padding: EdgeInsets.all(16),
