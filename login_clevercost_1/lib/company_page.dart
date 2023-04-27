@@ -24,6 +24,11 @@ class _CompanyPageState extends State<CompanyPage> {
         context, DonutChartScreen.routeName); // Navigate to DonutChartScreen
   }
 
+  continueToStacked() {
+    Navigator.pushNamed(
+        context, StackedLine.routeName); // Navigate to DonutChartScreen
+  }
+
   bool rememberCompany = false;
   @override
   Widget build(BuildContext context) {
