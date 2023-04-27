@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   position: LegendPosition.bottom,
                   offset: const Offset(0, -70)),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SfCircularChart(
               title: ChartTitle(
                   text: 'Top Suppliers in millions',
@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   position: LegendPosition.bottom,
                   offset: const Offset(0, -70)),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SfCircularChart(
               title: ChartTitle(
                   text: 'Top Suppliers in millions',

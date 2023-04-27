@@ -1,5 +1,6 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'basic_buttom.dart';
 import 'company_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -152,26 +153,9 @@ class _LoginPageState extends State<LoginPage> {
                 //Log in
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: GestureDetector(
+                  child: BasicButton(
+                    buttonTitle: 'Log in',
                     onTap: signIn,
-                    child: Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        color: Color(0xff347dfe),
-                        borderRadius: BorderRadius.circular(6),
-                        border: Border.all(color: Colors.grey),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Log in',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ),
-                    ),
                   ),
                 ),
 

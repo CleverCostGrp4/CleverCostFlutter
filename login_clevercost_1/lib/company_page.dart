@@ -1,7 +1,9 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:login_clevercost_1/dashboard.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:login_clevercost_1/basic_buttom.dart';
 
+import 'company_card.dart';
 import 'diagrams/doughnut_diagram.dart';
 
 class CompanyPage extends StatefulWidget {
@@ -65,13 +67,11 @@ class _CompanyPageState extends State<CompanyPage> {
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
+                child: CompanyCard(
+                  companyName: 'Clever Tech Group ApS',
+                  companyCVR: 12345678,
+                  companyIcon: FontAwesomeIcons.buildingUser,
+                  onTap: () {},
                 ),
               ),
               SizedBox(height: 30), //Spacing
@@ -110,26 +110,9 @@ class _CompanyPageState extends State<CompanyPage> {
               //Continue Button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: GestureDetector(
+                child: BasicButton(
+                  buttonTitle: 'Continue',
                   onTap: continueToDash,
-                  child: Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Color(0xff347dfe),
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ),
                 ),
               ),
             ],

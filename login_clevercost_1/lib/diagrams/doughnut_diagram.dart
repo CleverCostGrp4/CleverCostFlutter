@@ -89,7 +89,7 @@ class _DonutChartScreenState extends State<DonutChartScreen> {
         // Wrappede body med en Column. Fordi uden Column, så prøver body at fylde hele skærmen
         body: Column(
           children: [
-            Container(
+            SizedBox(
               height: 500,
               child: ListView(
                 scrollDirection: Axis.horizontal,
