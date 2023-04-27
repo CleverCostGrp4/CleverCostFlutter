@@ -5,6 +5,7 @@ import 'package:login_clevercost_1/basic_buttom.dart';
 
 import 'company_card.dart';
 import 'diagrams/doughnut_diagram.dart';
+import 'diagrams/stackedLine_diagram.dart';
 
 class CompanyPage extends StatefulWidget {
   const CompanyPage({super.key});
