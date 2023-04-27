@@ -70,6 +70,7 @@ class _VatCalculatorPageState extends State<VatCalculatorPage> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 15,),
                     const Text(
                       'Choose a year',
                       style: TextStyle(
@@ -78,11 +79,11 @@ class _VatCalculatorPageState extends State<VatCalculatorPage> {
                           fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
-                    
+                    const SizedBox(height: 15,),
                     YearDropdown(
                       onValueChanged: handleValueChangedYearDD,
                     ),
-                    const SizedBox(width: 8.0),
+                    const SizedBox(height: 15,),
                     const Text(
                       'How often do you pay VAT?',
                       style: TextStyle(
@@ -90,6 +91,7 @@ class _VatCalculatorPageState extends State<VatCalculatorPage> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
+                    const SizedBox(height: 15,),
                     Row(
                       children: [
                         CustomVATCheckboxes(
@@ -97,12 +99,13 @@ class _VatCalculatorPageState extends State<VatCalculatorPage> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 15,),
                     MonthDropdown(onValueChanged: handleValueChangedMonthDD),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 15),
                     Text('Selected year: ${selectedYear}'),
-                     const SizedBox(height: 10,),
+                     const SizedBox(height: 15,),
                     Text('Selected month: ${selectedMonth}'),
-                    const SizedBox(height: 10,),
+                    const SizedBox(height: 15,),
                     Text('Selected checkbox: ${selectedCheckboxValue}'),
                   ],
                 ),
