@@ -78,11 +78,12 @@ class _VatCalculatorPageState extends State<VatCalculatorPage> {
                           fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
+                    const SizedBox(height: 15),
                     
                     YearDropdown(
                       onValueChanged: handleValueChangedYearDD,
                     ),
-                    const SizedBox(width: 8.0),
+                    const SizedBox(height: 15),
                     const Text(
                       'How often do you pay VAT?',
                       style: TextStyle(
@@ -90,6 +91,7 @@ class _VatCalculatorPageState extends State<VatCalculatorPage> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
+                    const SizedBox(height: 15),
                     Row(
                       children: [
                         CustomVATCheckboxes(
