@@ -20,25 +20,28 @@ class CompanyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 80,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(6),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(companyIcon),
-          const SizedBox(width: 15.0),
-          Text(
-            companyName,
-            style: kCompanyNameStyle,
-          ),
-          const SizedBox(width: 10.0),
-          Text(companyCVR.toString()),
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 80,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(companyIcon),
+            const SizedBox(width: 15.0),
+            Text(
+              companyName,
+              style: kCompanyNameStyle,
+            ),
+            const SizedBox(width: 10.0),
+            Text(companyCVR.toString()),
+          ],
+        ),
       ),
     );
   }

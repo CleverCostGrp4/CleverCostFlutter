@@ -77,7 +77,9 @@ class _CompanyPageState extends State<CompanyPage> {
                   companyName: 'Clever Tech Group ApS',
                   companyCVR: 12345678,
                   companyIcon: FontAwesomeIcons.buildingUser,
-                  onTap: () {},
+                  onTap: () {
+                    setState(() {});
+                  },
                 ),
               ),
               SizedBox(height: 30), //Spacing
