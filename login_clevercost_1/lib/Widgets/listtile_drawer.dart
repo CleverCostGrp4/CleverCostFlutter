@@ -9,17 +9,28 @@ class ListTileDrawer extends StatelessWidget {
       required this.route,
       this.navigateToThirdParty = false});
 
-  final IconData? icon;
+  final Icon? icon;
   final String title;
   final String route;
   final bool navigateToThirdParty;
 
+Widget _styledIcon(Icon? icon) {
+    if (icon == null) return const SizedBox();
+
+    return IconTheme(
+      data: const IconThemeData(//Mangler korrekt farve
+        size: 24, //Mangler korrekt størrelse
+      ),
+      child: icon,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: icon != null ? Icon(icon) : null,
-        title: Text(title),
-        trailing: navigateToThirdParty ? Icon(Icons.open_in_new) : null,
+        leading: _styledIcon(icon),
+        title: Text(title, style: TextStyle(fontWeight: FontWeight.bold),),
+        trailing: navigateToThirdParty ? const Icon(Icons.open_in_new) : null,
         onTap: navigateToThirdParty
             ? () => _launchURL(route)
             : () => Navigator.pushNamed(context, route));

@@ -34,7 +34,7 @@ class _CustomVATCheckboxesState extends State<CustomVATCheckboxes> {
         widget.onValueChanged(value);
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(4),
           border: Border.all(color: Colors.blue),
