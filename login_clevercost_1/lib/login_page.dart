@@ -1,5 +1,6 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:login_clevercost_1/constants.dart';
 import 'basic_buttom.dart';
 import 'company_page.dart';
 
@@ -20,24 +21,73 @@ class _LoginPageState extends State<LoginPage> {
     builder: (BuildContext context) => CompanyPage(),
   );
 
+  double _containerHeight = 350.0;
+  bool rememberMe = false;
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    _emailFocusNode.addListener(_onEmailFocusChange);
+    _passwordFocusNode.addListener(_onPasswordFocusChange);
+  }
+
+  @override
+  void dispose() {
+    _emailFocusNode.removeListener(_onEmailFocusChange);
+    _passwordFocusNode.removeListener(_onPasswordFocusChange);
+    super.dispose();
+  }
+
+  void _onEmailFocusChange() {
+    setState(() {
+      if (_emailFocusNode.hasFocus) {
+        _containerHeight = 150.0;
+      } else {
+        _containerHeight = 350.0;
+      }
+    });
+  }
+
+  void _onPasswordFocusChange() {
+    setState(() {
+      if (_passwordFocusNode.hasFocus) {
+        _containerHeight = 150.0;
+      } else {
+        _containerHeight = 350.0;
+      }
+    });
+  }
+
   signIn() {
     Navigator.push(context, companyRoute);
   }
-
-  bool rememberMe = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        // ignore: prefer_const_literals_to_create_immutables
         child: Center(
           child: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
             child: Column(
               children: [
                 //Clevercost Logo
-                Image.asset('lib/images/clevercost_login.png'),
+                SizedBox(
+                  height: _containerHeight,
+                  width: double.infinity,
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 300),
+                    color: kBluePrimary,
+                    child: Center(
+                      child: Image.asset('lib/images/CleverCostLogo_v3.png'),
+                    ),
+                  ),
+                ),
+
+                SizedBox(height: 30), //Spacing
 
                 //Account e-mail
                 Padding(
@@ -67,6 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     child: TextField(
                       controller: _emailController, //Email-Controller
+                      focusNode: _emailFocusNode, //Email-FocusNode
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(6),
@@ -106,6 +157,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     child: TextField(
                       controller: _passwordController, //Password-Controller
+                      focusNode: _passwordFocusNode, //Password-FocusNode
                       obscureText: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -198,7 +250,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                SizedBox(height: 34),
+                SizedBox(height: 100.0),
               ],
             ),
           ),

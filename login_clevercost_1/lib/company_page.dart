@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:login_clevercost_1/basic_buttom.dart';
 
 import 'company_card.dart';
+import 'constants.dart';
 import 'diagrams/doughnut_diagram.dart';
 import 'diagrams/stackedLine_diagram.dart';
 
@@ -40,9 +41,20 @@ class _CompanyPageState extends State<CompanyPage> {
           child: Column(
             children: [
               //Top Logo
-              Image.asset('lib/images/clevercost_company_page.png'),
+              //Clevercost Logo
+              SizedBox(
+                height: 150,
+                width: double.infinity,
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  color: kBluePrimary,
+                  child: Center(
+                    child: Image.asset('lib/images/CleverCostLogo_v3.png'),
+                  ),
+                ),
+              ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 30), //Spacing
 
               //Company Listings with press
               Padding(
@@ -84,37 +96,6 @@ class _CompanyPageState extends State<CompanyPage> {
               ),
               SizedBox(height: 30), //Spacing
 
-              //Access this company by default when I log into my clevercost account
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    setState(() {
-                      rememberCompany = !rememberCompany;
-                    });
-                  },
-                  child: Row(
-                    children: [
-                      Checkbox(
-                        value: rememberCompany,
-                        onChanged: (newValue) {
-                          setState(() {
-                            rememberCompany = newValue!;
-                          });
-                        },
-                      ),
-                      Text(
-                        "Access this company by default \nwhen I log into my Clever Cost account.",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              SizedBox(height: 20), //Spacing
-
               //Continue Button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -123,6 +104,47 @@ class _CompanyPageState extends State<CompanyPage> {
                   onTap: continueToDash,
                 ),
               ),
+
+              //Sign up
+
+              SizedBox(height: 20),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 2,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text('or'),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        thickness: 2,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 20),
+
+              Text(
+                'Back to sign in',
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 16,
+                ),
+              ),
+
+              SizedBox(height: 100.0),
             ],
           ),
         ),
