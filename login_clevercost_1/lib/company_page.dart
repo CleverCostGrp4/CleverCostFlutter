@@ -1,12 +1,9 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:login_clevercost_1/basic_buttom.dart';
-
 import 'company_card.dart';
 import 'constants.dart';
 import 'diagrams/doughnut_diagram.dart';
-import 'diagrams/stackedLine_diagram.dart';
 
 class CompanyPage extends StatefulWidget {
   const CompanyPage({super.key});
@@ -21,17 +18,11 @@ class _CompanyPageState extends State<CompanyPage> {
   // );
 
   //Continue to Dashboard
-  continueToDash() {
+  continueToDashboard() {
     Navigator.pushNamed(
         context, DonutChartScreen.routeName); // Navigate to DonutChartScreen
   }
 
-  continueToStacked() {
-    Navigator.pushNamed(
-        context, StackedLine.routeName); // Navigate to DonutChartScreen
-  }
-
-  bool rememberCompany = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,28 +48,15 @@ class _CompanyPageState extends State<CompanyPage> {
               SizedBox(height: 30), //Spacing
 
               //Company Listings with press
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                ),
-              ),
-              SizedBox(height: 30), //Spacing
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
+                child: CompanyCard(
+                  companyName: 'Le Buzz Denmark',
+                  companyCVR: 12345678,
+                  onTap: () {
+                    setState(() {});
+                  },
                 ),
               ),
               SizedBox(height: 30), //Spacing
@@ -88,7 +66,18 @@ class _CompanyPageState extends State<CompanyPage> {
                 child: CompanyCard(
                   companyName: 'Clever Tech Group ApS',
                   companyCVR: 12345678,
-                  companyIcon: FontAwesomeIcons.buildingUser,
+                  onTap: () {
+                    setState(() {});
+                  },
+                ),
+              ),
+              SizedBox(height: 30), //Spacing
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: CompanyCard(
+                  companyName: 'Damascus Smykker',
+                  companyCVR: 12345678,
                   onTap: () {
                     setState(() {});
                   },
@@ -101,7 +90,7 @@ class _CompanyPageState extends State<CompanyPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: BasicButton(
                   buttonTitle: 'Continue',
-                  onTap: continueToDash,
+                  onTap: continueToDashboard,
                 ),
               ),
 

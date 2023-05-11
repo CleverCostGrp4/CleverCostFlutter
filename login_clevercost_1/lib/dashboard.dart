@@ -29,7 +29,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // ignore: unused_field
   late List<SupplierData> _chartData;
+  // ignore: unused_field
   late TooltipBehavior _tooltipBehavior;
 
   @override

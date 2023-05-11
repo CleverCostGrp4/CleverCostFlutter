@@ -9,7 +9,8 @@ class CompanyCards extends StatefulWidget {
 }
 
 class _CompanyCardsState extends State<CompanyCards> {
-  int _selectedValue = 0;
+  // ignore: unused_field
+  final int _selectedValue = 0;
 
   @override
   Widget build(BuildContext context) {

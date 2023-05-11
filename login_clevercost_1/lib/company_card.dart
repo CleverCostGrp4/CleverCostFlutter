@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:login_clevercost_1/constants.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CompanyCard extends StatelessWidget {
   const CompanyCard({
     super.key,
     required this.onTap,
-    required this.companyIcon,
     required this.companyName,
     required this.companyCVR,
+    this.selected = false,
   });
 
   final VoidCallback onTap;
-  //Company Icon
-  final IconData companyIcon;
   //Company Name
   final String companyName;
   //Company CVR Number
   final int companyCVR;
+  //Selected Parameter
+  final bool selected;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +25,17 @@ class CompanyCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 80,
+        padding: const EdgeInsets.only(left: 10.0), // Add left padding
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: selected ? kBluePrimary.withAlpha(100) : Colors.white,
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(6),
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment:
+              MainAxisAlignment.start, // Change MainAxisAlignment
           children: <Widget>[
-            Icon(companyIcon),
+            SvgPicture.asset('lib/icons/Company.svg'),
             const SizedBox(width: 15.0),
             Text(
               companyName,

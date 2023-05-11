@@ -1,5 +1,8 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter/services.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:login_clevercost_1/constants.dart';
 import 'basic_buttom.dart';
 import 'company_page.dart';
@@ -12,6 +15,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // Add form key
+  final _formKey = GlobalKey<FormState>();
   //Email-Controller
   final _emailController = TextEditingController();
   //Password-Controller
@@ -29,6 +34,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     _emailFocusNode.addListener(_onEmailFocusChange);
     _passwordFocusNode.addListener(_onPasswordFocusChange);
   }
@@ -42,216 +51,301 @@ class _LoginPageState extends State<LoginPage> {
 
   void _onEmailFocusChange() {
     setState(() {
-      if (_emailFocusNode.hasFocus) {
-        _containerHeight = 150.0;
-      } else {
-        _containerHeight = 350.0;
-      }
+      _containerHeight = _emailFocusNode.hasFocus ? 150.0 : 300.0;
     });
   }
 
   void _onPasswordFocusChange() {
     setState(() {
-      if (_passwordFocusNode.hasFocus) {
-        _containerHeight = 150.0;
-      } else {
-        _containerHeight = 350.0;
-      }
+      _containerHeight = _passwordFocusNode.hasFocus ? 150.0 : 300.0;
     });
   }
 
-  signIn() {
-    Navigator.push(context, companyRoute);
+  Future<void> _launchURLRegister() async {
+    final Uri url = Uri.parse('https://dashboard.clevercost.com/register');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  Future<void> _launchURLForgot() async {
+    final Uri url =
+        Uri.parse('https://dashboard.clevercost.com/password/reset');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  // Add email and password validation
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please type a valid email';
+    } else if (!EmailValidator.validate(value)) {
+      return 'Please enter a valid email';
+    }
+    return null;
+  }
+
+  String? _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter your password';
+    }
+    return null;
+  }
+
+  void signIn() {
+    if (_formKey.currentState!.validate()) {
+      Navigator.push(context, companyRoute);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                //Clevercost Logo
-                SizedBox(
-                  height: _containerHeight,
-                  width: double.infinity,
-                  child: AnimatedContainer(
-                    duration: Duration(milliseconds: 300),
-                    color: kBluePrimary,
-                    child: Center(
-                      child: Image.asset('lib/images/CleverCostLogo_v3.png'),
-                    ),
-                  ),
-                ),
-
-                SizedBox(height: 30), //Spacing
-
-                //Account e-mail
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Account e-mail',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color(0xff43425d),
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+          setState(() {
+            _containerHeight = 300.0;
+          });
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: SafeArea(
+          child: Center(
+            child: SingleChildScrollView(
+              physics: const NeverScrollableScrollPhysics(),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    //Clevercost Logo
+                    SizedBox(
+                      height: _containerHeight,
+                      width: double.infinity,
+                      child: AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        color: kBluePrimary,
+                        child: Center(
+                          child:
+                              Image.asset('lib/images/CleverCostLogo_v3.png'),
+                        ),
                       ),
                     ),
-                  ),
-                ),
 
-                SizedBox(height: 8), //Spacing
+                    SizedBox(height: 15), //Spacing
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[50],
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(6),
+                    // Account e-mail Label
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Account e-mail',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Color(0xff43425d),
+                          ),
+                        ),
+                      ),
                     ),
-                    child: TextField(
-                      controller: _emailController, //Email-Controller
-                      focusNode: _emailFocusNode, //Email-FocusNode
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
+                    SizedBox(height: 5), //Spacing
+
+                    // Email input
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[50],
+                          border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        hintText: 'Email',
+                        child: TextFormField(
+                          controller: _emailController,
+                          focusNode: _emailFocusNode,
+                          validator: _validateEmail,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            hintText: 'Email',
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-                SizedBox(height: 30), //Spacing
+                    SizedBox(height: 20),
 
-                //Password
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Password',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color(0xff43425d),
+                    // Password Label
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Password',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                            color: Color(0xff43425d),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
+                    SizedBox(height: 5), //Spacing
 
-                SizedBox(height: 8), //Spacing
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[50],
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: TextField(
-                      controller: _passwordController, //Password-Controller
-                      focusNode: _passwordFocusNode, //Password-FocusNode
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
+                    // Password input
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[50],
+                          border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        hintText: 'Password',
+                        child: TextFormField(
+                          controller: _passwordController,
+                          focusNode: _passwordFocusNode,
+                          obscureText: true,
+                          validator: _validatePassword,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            hintText: 'Password',
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
 
-                SizedBox(height: 10), //Spacing
+                    SizedBox(height: 10), //Spacing
 
-                //Remember me on this device
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: () {
-                      setState(() {
-                        rememberMe = !rememberMe;
-                      });
-                    },
-                    child: Row(
-                      children: [
-                        Checkbox(
-                          value: rememberMe,
-                          onChanged: (newValue) {
-                            setState(() {
-                              rememberMe = newValue!;
-                            });
-                          },
-                        ),
-                        Text(
-                          "Remember me on this device",
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ],
+                    //Remember me on this device
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              behavior: HitTestBehavior.opaque,
+                              onTap: () {
+                                setState(() {
+                                  rememberMe = !rememberMe;
+                                });
+                              },
+                              child: Row(
+                                children: [
+                                  Checkbox(
+                                    value: rememberMe,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        rememberMe = newValue!;
+                                      });
+                                    },
+                                  ),
+                                  Text(
+                                    "Remember me",
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: GestureDetector(
+                                onTap: _launchURLForgot,
+                                child: Text(
+                                  'Forgot Password?',
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ),
 
-                SizedBox(height: 10),
+                    SizedBox(height: 10),
 
-                //Log in
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: BasicButton(
-                    buttonTitle: 'Log in',
-                    onTap: signIn,
-                  ),
-                ),
+                    //Log in
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: BasicButton(
+                        buttonTitle: 'Log in',
+                        onTap: signIn,
+                      ),
+                    ),
 
-                //Sign up
+                    //Sign up
 
-                SizedBox(height: 20),
+                    SizedBox(height: 20),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 2,
-                          color: Colors.grey[400],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Divider(
+                              thickness: 2,
+                              color: Colors.grey[400],
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Text('or'),
+                          ),
+                          Expanded(
+                            child: Divider(
+                              thickness: 2,
+                              color: Colors.grey[400],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height: 20),
+
+                    GestureDetector(
+                      onTap: _launchURLRegister,
+                      child: Text(
+                        'Sign up',
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text('or'),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 2,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+
+                    SizedBox(height: 300.0),
+                  ],
                 ),
-
-                SizedBox(height: 20),
-
-                Text(
-                  'Sign up',
-                  style: TextStyle(
-                    color: Colors.blue,
-                    fontWeight: FontWeight.normal,
-                    fontSize: 16,
-                  ),
-                ),
-
-                SizedBox(height: 100.0),
-              ],
+              ),
             ),
           ),
         ),

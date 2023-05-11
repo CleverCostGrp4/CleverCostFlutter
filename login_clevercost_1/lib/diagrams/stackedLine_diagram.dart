@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 // ignore: depend_on_referenced_packages
@@ -70,14 +72,14 @@ class StackedLine extends StatelessWidget {
                   builder: (BuildContext context,
                       TrackballDetails trackballDetails) {
                     return Container(
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       decoration: BoxDecoration(
                         color: Color.alphaBlend(Colors.blue, Colors.white),
                         borderRadius:
                             const BorderRadius.all(Radius.circular(6.0)),
                       ),
                       child: Text('${trackballDetails.point!.y}',
-                          style: TextStyle(color: Colors.white)),
+                          style: const TextStyle(color: Colors.white)),
                     );
                   },
                 ),
