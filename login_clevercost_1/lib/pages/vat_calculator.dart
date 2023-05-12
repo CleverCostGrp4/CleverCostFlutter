@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_clevercost_1/pages/navigation_dummy.dart';
 import 'package:login_clevercost_1/Widgets/dropdown_year_picker.dart';
 import 'package:login_clevercost_1/Widgets/dropdown_month_picker.dart';
 import 'package:login_clevercost_1/Widgets/custom_check_box.dart';
@@ -79,11 +80,14 @@ class _VatCalculatorPageState extends State<VatCalculatorPage> {
                           fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
                     ),
-                    const SizedBox(height: 15,),
+
+                    const SizedBox(height: 15),
+                    
                     YearDropdown(
                       onValueChanged: handleValueChangedYearDD,
                     ),
-                    const SizedBox(height: 15,),
+                    const SizedBox(height: 15),
+
                     const Text(
                       'How often do you pay VAT?',
                       style: TextStyle(
@@ -91,7 +95,9 @@ class _VatCalculatorPageState extends State<VatCalculatorPage> {
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
-                    const SizedBox(height: 15,),
+
+                    const SizedBox(height: 15),
+
                     Row(
                       children: [
                         CustomVATCheckboxes(
@@ -101,12 +107,14 @@ class _VatCalculatorPageState extends State<VatCalculatorPage> {
                     ),
                     const SizedBox(height: 15,),
                     MonthDropdown(onValueChanged: handleValueChangedMonthDD),
-                    const SizedBox(height: 15),
-                    Text('Selected year: ${selectedYear}'),
-                     const SizedBox(height: 15,),
-                    Text('Selected month: ${selectedMonth}'),
-                    const SizedBox(height: 15,),
-                    Text('Selected checkbox: ${selectedCheckboxValue}'),
+                    const SizedBox(height: 10),
+                    Text('Selected year: $selectedYear'),
+                     const SizedBox(height: 10,),
+                    Text('Selected month: $selectedMonth'),
+                    const SizedBox(height: 10,),
+                    Text('Selected checkbox: $selectedCheckboxValue'),
+                    const SizedBox(height: 10,),
+                    FloatingActionButton(onPressed: () => Navigator.pushNamed(context, NavigationPage.routeName) ),
                   ],
                 ),
               ),
