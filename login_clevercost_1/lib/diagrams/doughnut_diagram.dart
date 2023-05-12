@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:login_clevercost_1/pages/vat_calculator.dart';
@@ -88,15 +90,56 @@ class _DonutChartScreenState extends State<DonutChartScreen> {
         // Wrappede body med en Column. Fordi uden Column, så prøver body at fylde hele skærmen
         body: Column(
           children: [
-            // SizedBox som angiver hvor meget chart skal fylde
             SizedBox(
-              width: double.infinity,
               height: 500,
-              child: SfCircularChart(
-                  title: buildChartTitle(),
-                  tooltipBehavior: _tooltipBehavior,
-                  series: <CircularSeries>[getChartSeries()],
-                  legend: buildLegend()),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  // SizedBox som angiver hvor meget chart skal fylde
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey, //Border Color
+                        width: 3.0, //Border width
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(30.0),
+                      ),
+                    ),
+                    child: SfCircularChart(
+                      title: buildChartTitle(),
+                      tooltipBehavior: _tooltipBehavior,
+                      series: <CircularSeries>[getChartSeries()],
+                      legend: buildLegend(),
+                    ),
+                  ),
+
+                  SizedBox(height: 20), //Spacing
+
+                  //Extra Doughnutdiagram to test view
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey, //Border Color
+                        width: 3.0, //Border width
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(30.0),
+                      ),
+                    ),
+                    child: SfCircularChart(
+                      title: buildChartTitle(),
+                      tooltipBehavior: _tooltipBehavior,
+                      series: <CircularSeries>[getChartSeries()],
+                      legend: buildLegend(),
+                    ),
+                  ),
+                ],
+              ),
             ),
             //Dummy nav for convenience
             FloatingActionButton(

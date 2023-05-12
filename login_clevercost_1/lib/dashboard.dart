@@ -1,5 +1,7 @@
 // ignore_for_this_file: prefer_const_constructors
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -27,7 +29,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // ignore: unused_field
   late List<SupplierData> _chartData;
+  // ignore: unused_field
   late TooltipBehavior _tooltipBehavior;
 
   @override
