@@ -1,6 +1,8 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
-
+import 'package:login_clevercost_1/basic_buttom.dart';
+import 'company_card.dart';
+import 'constants.dart';
 import 'diagrams/doughnut_diagram.dart';
 
 class CompanyPage extends StatefulWidget {
@@ -16,12 +18,11 @@ class _CompanyPageState extends State<CompanyPage> {
   // );
 
   //Continue to Dashboard
-  continueToDash() {
+  continueToDashboard() {
     Navigator.pushNamed(
         context, DonutChartScreen.routeName); // Navigate to DonutChartScreen
   }
 
-  bool rememberCompany = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,106 +32,108 @@ class _CompanyPageState extends State<CompanyPage> {
           child: Column(
             children: [
               //Top Logo
-              Image.asset('lib/images/clevercost_company_page.png'),
+              //Clevercost Logo
+              SizedBox(
+                height: 150,
+                width: double.infinity,
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 300),
+                  color: kBluePrimary,
+                  child: Center(
+                    child: Image.asset('lib/images/CleverCostLogo_v3.png'),
+                  ),
+                ),
+              ),
 
-              SizedBox(height: 20),
+              SizedBox(height: 30), //Spacing
 
               //Company Listings with press
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                ),
-              ),
-              SizedBox(height: 30), //Spacing
 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                ),
-              ),
-              SizedBox(height: 30), //Spacing
-
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  height: 80,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(6),
-                  ),
-                ),
-              ),
-              SizedBox(height: 30), //Spacing
-
-              //Access this company by default when I log into my clevercost account
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
+                child: CompanyCard(
+                  companyName: 'Le Buzz Denmark',
+                  companyCVR: 12345678,
                   onTap: () {
-                    setState(() {
-                      rememberCompany = !rememberCompany;
-                    });
+                    setState(() {});
                   },
-                  child: Row(
-                    children: [
-                      Checkbox(
-                        value: rememberCompany,
-                        onChanged: (newValue) {
-                          setState(() {
-                            rememberCompany = newValue!;
-                          });
-                        },
-                      ),
-                      Text(
-                        "Access this company by default \nwhen I log into my Clever Cost account.",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ],
-                  ),
                 ),
               ),
+              SizedBox(height: 30), //Spacing
 
-              SizedBox(height: 20), //Spacing
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: CompanyCard(
+                  companyName: 'Clever Tech Group ApS',
+                  companyCVR: 12345678,
+                  onTap: () {
+                    setState(() {});
+                  },
+                ),
+              ),
+              SizedBox(height: 30), //Spacing
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: CompanyCard(
+                  companyName: 'Damascus Smykker',
+                  companyCVR: 12345678,
+                  onTap: () {
+                    setState(() {});
+                  },
+                ),
+              ),
+              SizedBox(height: 30), //Spacing
 
               //Continue Button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: GestureDetector(
-                  onTap: continueToDash,
-                  child: Container(
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Color(0xff347dfe),
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
-                  ),
+                child: BasicButton(
+                  buttonTitle: 'Continue',
+                  onTap: continueToDashboard,
                 ),
               ),
+
+              //Sign up
+
+              SizedBox(height: 20),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 2,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: Text('or'),
+                    ),
+                    Expanded(
+                      child: Divider(
+                        thickness: 2,
+                        color: Colors.grey[400],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 20),
+
+              Text(
+                'Back to sign in',
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontWeight: FontWeight.normal,
+                  fontSize: 16,
+                ),
+              ),
+
+              SizedBox(height: 100.0),
             ],
           ),
         ),

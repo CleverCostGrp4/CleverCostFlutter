@@ -11,6 +11,10 @@ dependencies:
     sdk: flutter
   water_drop_nav_bar: ^2.2.0+5
   syncfusion_flutter_charts: ^21.1.35
+  font_awesome_flutter: ^10.4.0
+  url_launcher: ^6.1.10
+  email_validator: ^2.0.1
+  flutter_svg: ^1.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -24,3 +28,4 @@ flutter:
 
   assets:
     - lib/images/
+    - lib/icons/

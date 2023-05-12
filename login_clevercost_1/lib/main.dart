@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_clevercost_1/pages/vat_calculator.dart';
 import 'package:login_clevercost_1/diagrams/doughnut_diagram.dart';
+import 'diagrams/stackedLine_diagram.dart';
 import 'login_page.dart';
 
 void main() {
@@ -18,6 +19,8 @@ class MainApp extends StatelessWidget {
       routes: {
         DonutChartScreen.routeName: (context) =>
             const DonutChartScreen(title: 'random title'),
+        StackedLine.routeName: (context) =>
+            const StackedLine(title: 'random title'),
             VatCalculatorPage.routeName: (context) =>
             const VatCalculatorPage(),
       },
