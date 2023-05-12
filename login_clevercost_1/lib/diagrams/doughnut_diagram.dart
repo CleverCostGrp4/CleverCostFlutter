@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:login_clevercost_1/pages/vat_calculator.dart';
 
 class DonutChartScreen extends StatefulWidget {
   const DonutChartScreen({super.key, required this.title});
@@ -139,6 +140,14 @@ class _DonutChartScreenState extends State<DonutChartScreen> {
                   ),
                 ],
               ),
+            ),
+            //Dummy nav for convenience
+            FloatingActionButton(
+              onPressed: () {
+                Navigator.pushNamed(context, VatCalculatorPage.routeName);
+              },
+              tooltip: 'Go to Vat Calc',
+              child: const Icon(Icons.calculate),
             ),
           ],
         ),
