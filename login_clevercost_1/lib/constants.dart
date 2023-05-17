@@ -9,3 +9,5 @@ const kCompanyNameStyle = TextStyle(
   fontSize: 14.0,
   fontWeight: FontWeight.bold,
 );
+
+

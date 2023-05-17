@@ -1,11 +1,12 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/services.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:login_clevercost_1/constants.dart';
-import 'basic_buttom.dart';
-import 'company_page.dart';
+import '../../../basic_buttom.dart';
+import '../../../company_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,7 +17,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // Add form key
-  final _formKey = GlobalKey<FormState>();
+  final _formKey =
+      GlobalKey<FormState>(); //final _formKey = GlobalKey<FormBuilderState>();
   //Email-Controller
   final _emailController = TextEditingController();
   //Password-Controller
@@ -76,22 +78,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  // Add email and password validation
-  String? _validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please type a valid email';
-    } else if (!EmailValidator.validate(value)) {
-      return 'Please enter a valid email';
-    }
-    return null;
-  }
 
-  String? _validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your password';
-    }
-    return null;
-  }
 
   void signIn() {
     if (_formKey.currentState!.validate()) {

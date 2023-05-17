@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:login_clevercost_1/diagrams/doughnut_diagram.dart';
 import 'diagrams/stackedLine_diagram.dart';
-import 'login_page.dart';
+import 'modules/signin/views/signin_view.dart';
 
 void main() {
   runApp(const MainApp());
