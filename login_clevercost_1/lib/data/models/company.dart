@@ -4,14 +4,14 @@ import 'package:login_clevercost_1/data/models/currency.dart';
 class Company {
   int id;
   String name;
-  int cvrNumber;
+  String cvrNumber;
   String email;
   String phone;
   String clevercostEmail;
   String? industry;
   String address;
   String city;
-  int zip;
+  String zip;
   bool isSelected;
   bool isDeactivated;
   Currency currency;

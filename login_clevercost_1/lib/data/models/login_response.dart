@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:login_clevercost_1/data/models/result.dart';
 
 class LoginResponse {
-  int status;
+  int ?status;
   String message;
-  Result result;
+  Result? result;
 
   LoginResponse({
     required this.status,
@@ -20,12 +20,12 @@ class LoginResponse {
   factory LoginResponse.fromJson(Map<String, dynamic> json) => LoginResponse(
         status: json["status"],
         message: json["message"],
-        result: Result.fromJson(json["result"]),
+        result: json["result"].isEmpty ? null : Result?.fromJson(json["result"]),
       );
 
   Map<String, dynamic> toJson() => {
         "status": status,
         "message": message,
-        "result": result.toJson(),
+        "result": result!.toJson(),
       };
 }

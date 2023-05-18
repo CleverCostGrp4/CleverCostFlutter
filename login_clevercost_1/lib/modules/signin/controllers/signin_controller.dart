@@ -34,11 +34,12 @@ class SigninController extends GetxController {
       );
 
       final responseData = response.data;
+      print('DEBUG: Response data: ${response.data}');
       final loginResponse = LoginResponse.fromJson(responseData);
 
-      print('Status Code: ${loginResponse.status}');
+      // print('Status Code: ${loginResponse.status.toString()}');
 
-      if (loginResponse.status == 200) {
+      if ((loginResponse.status ?? 0) == 200) {
         Get.offAll(const HomeView());
       } else {
         OverlayServices.to
