@@ -6,6 +6,8 @@ import '../modules/signin/bindings/signin_binding.dart';
 import '../modules/signin/views/signin_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/company/views/company_view.dart';
+import '../modules/company/bindings/company_binding.dart';
 
 //part 'app_routes.dart';
 
@@ -14,10 +16,12 @@ abstract class Routes {
   static const home = _Paths.home;
   static const splash = _Paths.splash;
   static const signin = _Paths.signin;
+  static const company = _Paths.company;
 }
 
 abstract class _Paths {
   _Paths._();
+  static const company = '/company';
   static const home = '/home';
   static const splash = '/splash';
   static const signin = '/signin';
@@ -44,5 +48,10 @@ class AppPages {
       page: () => const SigninView(),
       binding: SigninBinding(),
     ),
+    GetPage(
+      name: _Paths.company,
+      page: () => CompanyView(),
+      binding: CompanyBinding(),
+    )
   ];
 }

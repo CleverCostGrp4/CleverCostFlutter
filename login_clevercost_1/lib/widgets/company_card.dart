@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:login_clevercost_1/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:login_clevercost_1/data/models/company.dart';
 
 class CompanyCard extends StatelessWidget {
   const CompanyCard({
     super.key,
+    required this.company,
     required this.onTap,
-    required this.companyName,
-    required this.companyCVR,
     this.selected = false,
   });
 
+  //Company object
+  final Company company;
+  // OnTap
   final VoidCallback onTap;
-  //Company Name
-  final String companyName;
-  //Company CVR Number
-  final int companyCVR;
   //Selected Parameter
   final bool selected;
 
@@ -37,12 +37,19 @@ class CompanyCard extends StatelessWidget {
           children: <Widget>[
             SvgPicture.asset('lib/icons/Company.svg'),
             const SizedBox(width: 15.0),
-            Text(
-              companyName,
-              style: kCompanyNameStyle,
+            Obx(
+              () => Text(
+                company.name,
+                style: kCompanyNameStyle,
+              ),
             ),
             const SizedBox(width: 10.0),
-            Text(companyCVR.toString()),
+            Obx(
+              () => Text(
+                company.cvrNumber,
+                style: kCompanyNameStyle,
+              ),
+            ),
           ],
         ),
       ),
