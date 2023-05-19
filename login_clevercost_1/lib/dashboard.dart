@@ -43,7 +43,84 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold());
+    return SafeArea(
+        child: Scaffold(
+      body: Container(
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: <Widget>[
+            SfCircularChart(
+              title: ChartTitle(
+                  text: 'Top Suppliers in millions',
+                  alignment: ChartAlignment.center),
+              tooltipBehavior: _tooltipBehavior,
+              series: <CircularSeries>[
+                DoughnutSeries<SupplierData, String>(
+                  dataSource: _chartData,
+                  xValueMapper: (SupplierData data, _) => data.amountName,
+                  yValueMapper: (SupplierData data, _) => data.amount,
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
+                  enableTooltip: true,
+                ),
+              ],
+              legend: Legend(
+                  isVisible: true,
+                  overflowMode: LegendItemOverflowMode.wrap,
+                  position: LegendPosition.bottom,
+                  offset: const Offset(0, -70)),
+            ),
+            const SizedBox(height: 20),
+            SfCircularChart(
+              title: ChartTitle(
+                  text: 'Top Suppliers in millions',
+                  alignment: ChartAlignment.center),
+              tooltipBehavior: _tooltipBehavior,
+              series: <CircularSeries>[
+                DoughnutSeries<SupplierData, String>(
+                  dataSource: _chartData,
+                  xValueMapper: (SupplierData data, _) => data.amountName,
+                  yValueMapper: (SupplierData data, _) => data.amount,
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
+                  enableTooltip: true,
+                ),
+              ],
+              legend: Legend(
+                  isVisible: true,
+                  overflowMode: LegendItemOverflowMode.wrap,
+                  position: LegendPosition.bottom,
+                  offset: const Offset(0, -70)),
+            ),
+            const SizedBox(height: 20),
+            SfCircularChart(
+              title: ChartTitle(
+                  text: 'Top Suppliers in millions',
+                  alignment: ChartAlignment.center),
+              tooltipBehavior: _tooltipBehavior,
+              series: <CircularSeries>[
+                DoughnutSeries<SupplierData, String>(
+                  dataSource: _chartData,
+                  xValueMapper: (SupplierData data, _) => data.amountName,
+                  yValueMapper: (SupplierData data, _) => data.amount,
+                  dataLabelSettings: const DataLabelSettings(isVisible: true),
+                  enableTooltip: true,
+                ),
+              ],
+              legend: Legend(
+                  isVisible: true,
+                  overflowMode: LegendItemOverflowMode.wrap,
+                  position: LegendPosition.bottom,
+                  offset: const Offset(0, -70)),
+            ),
+            //Dummy nav for convenience
+            FloatingActionButton(
+              onPressed: () => Navigator.pushNamed(context,'vat_calc' ),
+              tooltip: 'Go to Vat Calc',
+              child: const Icon(Icons.calculate),
+              ),
+          ],
+        ),
+      ),
+    ));
   }
 
   List<SupplierData> getChartData() {
