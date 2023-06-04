@@ -1,6 +1,8 @@
 //ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:login_clevercost_1/basic_buttom.dart';
+import 'package:login_clevercost_1/dashboard.dart';
 import 'company_card.dart';
 import 'constants.dart';
 import 'diagrams/doughnut_diagram.dart';
@@ -19,8 +21,7 @@ class _CompanyPageState extends State<CompanyPage> {
 
   //Continue to Dashboard
   continueToDashboard() {
-    Navigator.pushNamed(
-        context, DonutChartScreen.routeName); // Navigate to DonutChartScreen
+    Get.to(Dashboard());
   }
 
   @override

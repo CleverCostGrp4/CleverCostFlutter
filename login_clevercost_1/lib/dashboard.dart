@@ -4,6 +4,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:get/get.dart';
+
+import 'pages/vat_calculator.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -15,20 +18,20 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    return const MyHomePage(title: 'Diagrams');
+    return const DiagramPage(title: 'Diagrams');
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class DiagramPage extends StatefulWidget {
+  const DiagramPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<DiagramPage> createState() => _DiagramPageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _DiagramPageState extends State<DiagramPage> {
   // ignore: unused_field
   late List<SupplierData> _chartData;
   // ignore: unused_field
@@ -113,10 +116,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             //Dummy nav for convenience
             FloatingActionButton(
-              onPressed: () => Navigator.pushNamed(context,'vat_calc' ),
+              onPressed: () => Get.to(VatCalculatorPage()),
               tooltip: 'Go to Vat Calc',
               child: const Icon(Icons.calculate),
-              ),
+            ),
           ],
         ),
       ),

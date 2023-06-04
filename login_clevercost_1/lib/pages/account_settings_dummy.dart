@@ -11,8 +11,8 @@ class NavigationPageDos extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Drawer Dummy'),),
         drawer: const AccountSettingDrawer(),
-        body: Column(
-          children: const [
+        body: const Column(
+          children: [
             Text('Navigation Page Dos'),
           ],
         ));

@@ -28,43 +28,45 @@ class MenuDrawer extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
               ),
-              child: Text(
-                'Menu', 
-                style: TextStyle( 
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24)
-              ),
+              child: Text('Menu',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
             ),
           ),
           sectionLabel('Sections'),
           const ListTileDrawer(
-              title: 'Dashboard', route: '/dummypage', icon: Icon(Icons.radio)),
+              title: 'Dashboard',
+              route: '/dummyPage1',
+              icon: Icon(Icons.radio)),
           const ListTileDrawer(
-              title: 'Products', route: '/dummypagedos', icon: Icon(Icons.abc)),
+              title: 'Products', route: '/dummyPage1', icon: Icon(Icons.abc)),
           const ListTileDrawer(
               title: 'Invoices',
-              route: '/dummypagedos',
+              route: '/dummyPage1',
               icon: Icon(Icons.dangerous)),
           const ListTileDrawer(
-              title: 'Vendors', route: '/dummypage', icon: Icon(Icons.face_2)),
+              title: 'Vendors', route: '/dummyPage1', icon: Icon(Icons.face_2)),
           const ListTileDrawer(
               title: 'Sale Items',
-              route: '/dummypage',
+              route: '/dummyPage1',
               icon: Icon(Icons.radar)),
           sectionLabel('Tools'),
           const ListTileDrawer(
               title: 'Upload Document',
-              route: '/dummypage',
+              route: '/dummyPage2',
               icon: Icon(Icons.table_bar)),
           const ListTileDrawer(
               title: 'VAT calculator',
-              route: '/vat_calc',
+              route: '/vatCalc',
               icon: Icon(Icons.calculate_outlined)),
           sectionLabel('Account'),
           const ListTileDrawer(
-              title: 'Account settings', route: '/dummypage', icon: Icon(Icons.table_bar)),
+              title: 'Account settings',
+              route: '/dashboard',
+              icon: Icon(Icons.table_bar)),
           const ListTileDrawer(
-              title: 'Switch company', route: '/dummypage', icon: Icon(Icons.table_bar)),
+              title: 'Switch company',
+              route: '/companyPage',
+              icon: Icon(Icons.table_bar)),
         ],
       ),
     );

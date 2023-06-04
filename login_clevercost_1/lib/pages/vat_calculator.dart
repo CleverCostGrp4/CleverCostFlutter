@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:login_clevercost_1/pages/navigation_dummy.dart';
 import 'package:login_clevercost_1/Widgets/dropdown_year_picker.dart';
 import 'package:login_clevercost_1/Widgets/dropdown_month_picker.dart';
@@ -114,7 +115,7 @@ class _VatCalculatorPageState extends State<VatCalculatorPage> {
                     const SizedBox(height: 10,),
                     Text('Selected checkbox: $selectedCheckboxValue'),
                     const SizedBox(height: 10,),
-                    FloatingActionButton(onPressed: () => Navigator.pushNamed(context, NavigationPage.routeName) ),
+                    FloatingActionButton(onPressed: () => Get.toNamed('/dummyPage1') ),
                   ],
                 ),
               ),

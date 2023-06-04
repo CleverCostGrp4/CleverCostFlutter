@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'package:login_clevercost_1/company_page.dart';
 import 'package:login_clevercost_1/configs/app_theme.dart';
 import 'package:login_clevercost_1/configs/font_size.dart';
+import 'package:login_clevercost_1/dashboard.dart';
 import 'package:login_clevercost_1/utils/app_urls.dart';
 import 'package:login_clevercost_1/modules/home/views/home_view.dart';
 import 'package:login_clevercost_1/services/overlay_services.dart';
@@ -40,7 +42,7 @@ class SigninController extends GetxController {
       // print('Status Code: ${loginResponse.status.toString()}');
 
       if ((loginResponse.status ?? 0) == 200) {
-        Get.offAll(const HomeView());
+        Get.offAll(const CompanyPage());
       } else {
         OverlayServices.to
             .showSnackBar(color: AppColor.appRed, message: 'Failed to log in');

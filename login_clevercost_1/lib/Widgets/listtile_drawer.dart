@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:get/get.dart';
 
 class ListTileDrawer extends StatelessWidget {
   const ListTileDrawer(
@@ -14,11 +15,12 @@ class ListTileDrawer extends StatelessWidget {
   final String route;
   final bool navigateToThirdParty;
 
-Widget _styledIcon(Icon? icon) {
+  Widget _styledIcon(Icon? icon) {
     if (icon == null) return const SizedBox();
 
     return IconTheme(
-      data: const IconThemeData(//Mangler korrekt farve
+      data: const IconThemeData(
+        //Mangler korrekt farve
         size: 24, //Mangler korrekt størrelse
       ),
       child: icon,
@@ -29,11 +31,14 @@ Widget _styledIcon(Icon? icon) {
   Widget build(BuildContext context) {
     return ListTile(
         leading: _styledIcon(icon),
-        title: Text(title, style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text(
+          title,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
         trailing: navigateToThirdParty ? const Icon(Icons.open_in_new) : null,
         onTap: navigateToThirdParty
             ? () => _launchURL(route)
-            : () => Navigator.pushNamed(context, route));
+            : () => Get.toNamed(route));
   }
 }
 

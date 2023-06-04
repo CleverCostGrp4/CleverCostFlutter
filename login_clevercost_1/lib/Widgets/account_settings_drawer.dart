@@ -20,11 +20,11 @@ class AccountSettingDrawer extends StatelessWidget {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
             ),
           ),
-          ListTileDrawer(title: 'Account Overview', route: '/dummypage'),
-          ListTileDrawer(title: 'Companies', route: '/dummypagedos'),
+          ListTileDrawer(title: 'Account Overview', route: '/dummypage1'),
+          ListTileDrawer(title: 'Companies', route: '/dummyPage1'),
           ListTileDrawer(
             title: 'Subscriptions',
-            route: '/dummypagedos',
+            route: '/dummyPage2',
           ),
           ListTileDrawer(
             title: 'Privacy Policy',

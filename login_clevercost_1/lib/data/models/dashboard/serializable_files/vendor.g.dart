@@ -15,3 +15,6 @@ Map<String, dynamic> _$VendorToJson(Vendor instance) => <String, dynamic>{
       'weekCount': instance.weekCount,
       'totalCount': instance.totalCount,
     };
+
+
+
